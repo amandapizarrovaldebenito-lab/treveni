@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contacto | TREVENI</title>
+    <meta
+      name="description"
+      content="Cuéntanos sobre tu propiedad o proyecto y solicita una propuesta técnica."
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body class="contact-page">
+    <div data-header></div>
+    <main id="contenido">
+      <section class="hero hero-contact">
+        <div class="container hero-content">
+          <span class="eyebrow">Contacto</span>
+          <h1>Conversemos sobre tu propiedad o proyecto.</h1>
+          <p>
+            Cuéntanos qué necesitas revisar, diseñar, regularizar o evaluar. Te
+            orientaremos con una propuesta clara según el alcance del encargo.
+          </p>
+          <a class="hero-response" href="#formulario"
+            ><img
+              src="Imagenes/Iconos/Pagina de contacto/schedule_24dp_CDAD98_FILL0_wght100_GRAD0_opsz24.svg"
+              alt=""
+            /><span>Respondemos en menos de 24 horas hábiles</span></a
+          >
+        </div>
+      </section>
+
+      <section class="section section-soft contact-orientation">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Para orientarte mejor</span
+            ><span class="contact-title-line"></span>
+          </div>
+          <div class="orientation-row">
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/list_alt_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Servicio requerido</h3>
+                <p>¿Qué servicio necesitas<br />para tu proyecto?</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/location_on_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Ubicación</h3>
+                <p>¿Dónde se ubica tu<br />proyecto?</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/square_foot_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Superficie aproximada</h3>
+                <p>Indícanos los metros<br />cuadrados (m²).</p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/assignment_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Antecedentes disponibles</h3>
+                <p>Cuéntanos qué documentos<br />o planos tienes.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-form-section" id="formulario">
+        <div class="container contact-layout">
+          <form class="form contact-panel">
+            <h2>Solicitar propuesta</h2>
+            <div class="form-row">
+              <label class="field"
+                >Nombre completo *<input
+                  name="nombre"
+                  autocomplete="name"
+                  required
+                  placeholder="Ej: Juan Pérez" /></label
+              ><label class="field"
+                >Correo electrónico *<input
+                  type="email"
+                  name="correo"
+                  autocomplete="email"
+                  required
+                  placeholder="Ej: juan@correo.cl"
+              /></label>
+            </div>
+            <div class="form-row">
+              <label class="field"
+                >Número de teléfono / WhatsApp *<input
+                  type="tel"
+                  name="telefono"
+                  autocomplete="tel"
+                  required
+                  placeholder="Ej: +56 9 1234 5678" /></label
+              ><label class="field"
+                >Servicio de interés *<select name="servicio" required>
+                  <option value="">Selecciona un servicio</option>
+                  <option>Diseño arquitectónico</option>
+                  <option>Regularización</option>
+                  <option>Inspección de Propiedades</option>
+                  <option>Tasaciones</option>
+                  <option>Eficiencia energética CEV</option>
+                </select></label
+              >
+            </div>
+            <div class="form-row">
+              <label class="field"
+                >Tipo de cliente (opcional)<select name="cliente">
+                  <option value="">Selecciona una opción</option>
+                  <option>Persona natural</option>
+                  <option>Empresa o inmobiliaria</option>
+                  <option>Profesional u oficina</option>
+                </select></label
+              ><label class="field"
+                >Comuna o ubicación *<input
+                  name="comuna"
+                  required
+                  placeholder="Ej: Concepción, San Pedro de la Paz"
+              /></label>
+            </div>
+            <div class="form-row">
+              <label class="field"
+                >Superficie aproximada (m²) *<input
+                  name="superficie"
+                  required
+                  placeholder="Ej: 85 m² / 120 m²" /></label
+              ><label class="field"
+                >Dirección *<input
+                  name="direccion"
+                  autocomplete="street-address"
+                  required
+                  placeholder="Ej: Av. Los Carrera 1234"
+              /></label>
+            </div>
+            <label class="field"
+              >Mensaje *<textarea
+                name="mensaje"
+                required
+                placeholder="Cuéntanos sobre tu propiedad o proyecto. ¿Qué necesitas revisar, diseñar, regularizar o evaluar?"
+              ></textarea></label
+            ><button class="btn contact-submit" type="submit">
+              <span>Enviar solicitud</span><span>→</span>
+            </button>
+            <p class="contact-form-note">
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/schedule_24dp_CDAD98_FILL0_wght100_GRAD0_opsz24.svg"
+                alt=""
+              />Te responderemos en menos de 24 horas hábiles.
+            </p>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <aside class="contact-aside">
+            <h2>Contacto directo</h2>
+            <span class="contact-aside-line"></span>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/call_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Número de teléfono / WhatsApp</h3>
+                <p>+56 9 6441 5341<small>Escríbenos directamente</small></p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/mail_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Correo electrónico</h3>
+                <p>
+                  treveni@contacto.cl<small
+                    >Respondemos en menos<br />de 24 horas hábiles</small
+                  >
+                </p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/location_on_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Cobertura</h3>
+                <p>
+                  Provincia de Concepción · Curicó<br />Región del Biobío ·
+                  Región del Maule<small>Atención presencial y remota</small>
+                </p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/schedule_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Horario de atención</h3>
+                <p>
+                  Lunes a viernes<br />09:00–18:00 hrs.<small
+                    >Excepto festivos</small
+                  >
+                </p>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-soft contact-modes">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Modalidades de atención</span
+            ><span class="contact-title-line"></span>
+          </div>
+          <div class="modes-grid">
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/home_work_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Presencial<br />Provincia de Concepción</h3>
+                <p>
+                  Atendemos proyectos en toda el área metropolitana y comunas
+                  aledañas.
+                </p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/distance_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Presencial<br />Curicó y Maule</h3>
+                <p>
+                  Visitas y reuniones en terreno en Curicó, Talca y comunas
+                  cercanas.
+                </p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="Imagenes/Iconos/Pagina de contacto/laptop_mac_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <div>
+                <h3>Remota</h3>
+                <p>
+                  Reuniones online y entrega digital de informes y soluciones,
+                  estés donde estés.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-next">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Qué pasa después</span
+            ><span class="contact-title-line"></span>
+          </div>
+          <div class="next-steps">
+            <article>
+              <span class="next-number">1</span
+              ><img
+                src="Imagenes/Iconos/Pagina de contacto/inbox_text_person_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <h3>Recibimos tu caso</h3>
+              <p>
+                Revisamos tu solicitud y confirmamos los detalles iniciales para
+                entender tu necesidad.
+              </p>
+            </article>
+            <span class="next-arrow">›</span>
+            <article>
+              <span class="next-number">2</span
+              ><img
+                src="Imagenes/Iconos/Pagina de contacto/fact_check_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <h3>Revisamos antecedentes</h3>
+              <p>
+                Analizamos la información y evaluamos el alcance técnico del
+                encargo.
+              </p>
+            </article>
+            <span class="next-arrow">›</span>
+            <article>
+              <span class="next-number">3</span
+              ><img
+                src="Imagenes/Iconos/Pagina de contacto/send_48dp_8C7669_FILL0_wght100_GRAD0_opsz48.svg"
+                alt=""
+              />
+              <h3>Enviamos propuesta</h3>
+              <p>
+                Te enviamos una propuesta clara y ajustada a tu proyecto, con
+                alcance y próximos pasos.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div data-footer></div>
+  </body>
+</html>
