@@ -2872,6 +2872,7 @@ h4 {
   height: 50px;
 }
 .modes-grid h3 {
+  min-height: 2.4em;
   margin: 0 0 1.2rem;
 }
 .modes-grid p {
@@ -2959,6 +2960,9 @@ h4 {
   .orientation-row,
   .modes-grid {
     grid-template-columns: 1fr;
+  }
+  .modes-grid h3 {
+    min-height: 0;
   }
   .orientation-row article,
   .orientation-row article:first-child,
