@@ -1,6 +1,7 @@
 const services=[['Inspección de Propiedades','inspeccion-pre-entrega.html'],['Tasaciones','tasaciones.html'],['Eficiencia Energética CEV','cev.html'],['Diseño Arquitectónico','diseno-arquitectonico.html'],['Regularizaciones','regularizacion.html'],['Comunidad y Territorio','comunidad-territorio.html']];
 const header=document.querySelector('[data-header]');
 if(header){header.innerHTML=`<a class="skip-link" href="#contenido">Saltar al contenido</a><header class="site-header"><div class="container nav"><a class="brand" href="index.html" aria-label="TREVENI, inicio"><img class="brand-mark" src="Imagenes/Imagenes/Logo.png" alt=""><span><strong>TREVENI</strong><small>ARQUITECTURA &amp; TERRITORIO</small></span></a><button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">☰</button><nav class="nav-links" id="main-nav" aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="estudio.html">Equipo</a><div class="dropdown"><button aria-expanded="false">Servicios ▾</button><div class="dropdown-menu">${services.map(s=>`<a href="${s[1]}">${s[0]}</a>`).join('')}</div></div><a href="proyectos.html">Proyectos</a><a href="contacto.html">Contacto</a></nav><a class="btn" href="contacto.html">Solicitar propuesta →</a></div></header>`}
+if(header){header.insertAdjacentHTML('beforeend','<button class="nav-backdrop" type="button" aria-label="Cerrar navegación" tabindex="-1"></button>')}
 const footer=document.querySelector('[data-footer]');
 if(footer){
   footer.innerHTML=`
@@ -13,7 +14,7 @@ if(footer){
               <span><strong>TREVENI</strong><small>ARQUITECTURA &amp; TERRITORIO</small></span>
             </a>
             <span class="footer-accent"></span>
-            <p>Arquitectura &amp; Territorio con criterio,<br>método y respaldo profesional.</p>
+            <p>Arquitectura &amp; Territorio con criterio, <br>método y respaldo profesional.</p>
           </div>
           <div class="footer-column">
             <h3>Servicios</h3>
@@ -52,10 +53,27 @@ if(footer){
       </div>
     </footer>`;
 }
-const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links');toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));nav.classList.toggle('open',!open)});
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav-links'),navBackdrop=document.querySelector('.nav-backdrop');
+const setMobileMenu=open=>{
+  toggle?.setAttribute('aria-expanded',String(open));
+  toggle?.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');
+  nav?.classList.toggle('open',open);
+  navBackdrop?.classList.toggle('open',open);
+  document.body.classList.toggle('mobile-nav-open',open);
+  if(window.matchMedia('(max-width: 800px)').matches){
+    const servicesButton=document.querySelector('.dropdown > button');
+    servicesButton?.setAttribute('aria-expanded',String(open));
+    servicesButton?.closest('.dropdown')?.classList.toggle('open',open);
+  }
+};
+toggle?.addEventListener('click',()=>setMobileMenu(toggle.getAttribute('aria-expanded')!=='true'));
+navBackdrop?.addEventListener('click',()=>setMobileMenu(false));
+nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMobileMenu(false)));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&toggle?.getAttribute('aria-expanded')==='true'){setMobileMenu(false);toggle.focus()}});
+window.addEventListener('resize',()=>{if(window.innerWidth>800&&toggle?.getAttribute('aria-expanded')==='true')setMobileMenu(false)});
 document.querySelectorAll('.nav-links a').forEach(a=>{if(a.getAttribute('href')===location.pathname.split('/').pop()||(!location.pathname.split('/').pop()&&a.getAttribute('href')==='index.html'))a.setAttribute('aria-current','page')});
 if(document.querySelector('.dropdown-menu a[aria-current="page"]'))document.querySelector('.dropdown').classList.add('active');
-document.querySelectorAll('.dropdown>button').forEach(b=>b.addEventListener('click',()=>{const d=b.parentElement;d.classList.toggle('open');b.setAttribute('aria-expanded',String(d.classList.contains('open')))}));
+document.querySelectorAll('.dropdown>button').forEach(b=>b.addEventListener('click',()=>{const d=b.parentElement;if(window.matchMedia('(max-width: 800px)').matches){d.classList.add('open');b.setAttribute('aria-expanded','true');return}d.classList.toggle('open');b.setAttribute('aria-expanded',String(d.classList.contains('open')))}));
 document.querySelectorAll('.faq-button').forEach(button=>{
   const icon=button.querySelector('span');
   if(icon){

@@ -1125,6 +1125,148 @@ p {
   gap: 0.75rem 2.3rem;
   margin-top: 1.2rem;
 }
+
+/* Navegación móvil en panel con fondo modal. */
+.nav-backdrop {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  body.mobile-nav-open {
+    overflow: hidden;
+  }
+
+  .site-header {
+    z-index: 70;
+  }
+
+  .site-header .nav {
+    position: relative;
+    z-index: 72;
+  }
+
+  .nav-backdrop {
+    position: fixed;
+    z-index: 69;
+    inset: 0;
+    display: block;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(29, 31, 31, 0.68);
+    opacity: 0;
+    cursor: pointer;
+    transition:
+      opacity 180ms ease,
+      visibility 180ms ease;
+  }
+
+  .nav-backdrop.open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .site-header .nav-links {
+    position: fixed;
+    z-index: 71;
+    top: 70px;
+    right: 0.5rem;
+    bottom: auto;
+    left: 0.5rem;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.15rem;
+    max-height: calc(100dvh - 78px);
+    padding: 1rem 1.25rem 1.5rem;
+    overflow-y: auto;
+    border: 1px solid rgba(101, 65, 43, 0.18);
+    border-top: 0;
+    border-radius: 0 0 3px 3px;
+    background: #eeebe8;
+    box-shadow: 0 18px 45px rgba(29, 31, 31, 0.3);
+    opacity: 0;
+    transform: translateY(-0.75rem);
+    pointer-events: none;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease,
+      visibility 180ms ease;
+  }
+
+  .site-header .nav-links.open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .site-header .nav-links > a,
+  .site-header .dropdown > button {
+    width: 100%;
+    padding: 0.8rem 0.35rem;
+    border-bottom: 1px solid rgba(101, 65, 43, 0.16);
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .site-header .nav-links > a[aria-current="page"]::after,
+  .site-header .dropdown.active > button::after {
+    display: none;
+  }
+
+  .site-header .dropdown-menu,
+  .site-header .dropdown:hover .dropdown-menu,
+  .site-header .dropdown:focus-within .dropdown-menu,
+  .site-header .dropdown.open .dropdown-menu {
+    position: static;
+    display: grid;
+    width: 100%;
+    padding: 0.35rem 0 0.55rem 0.75rem;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .site-header .dropdown-menu a {
+    padding: 0.58rem 0.35rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .site-header .dropdown-menu a:hover,
+  .site-header .dropdown-menu a:focus-visible {
+    background: rgba(205, 173, 152, 0.18);
+  }
+
+  .site-header .menu-toggle {
+    z-index: 73;
+    cursor: pointer;
+  }
+
+  .site-header .menu-toggle[aria-expanded="true"]::before,
+  .site-header .menu-toggle[aria-expanded="true"]::after {
+    content: "";
+    position: absolute;
+    width: 29px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  .site-header .menu-toggle[aria-expanded="true"]::before {
+    transform: rotate(45deg);
+  }
+
+  .site-header .menu-toggle[aria-expanded="true"]::after {
+    transform: rotate(-45deg);
+  }
+}
 .reg-quote-note {
   margin: 1.25rem 0 0;
   color: var(--muted);
@@ -7449,5 +7591,894 @@ span.site-check-icon {
 
   .architecture-needs-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   Tablet horizontal y tablet amplia: 800px a 980px
+   ========================================================= */
+@media (min-width: 800px) and (max-width: 980px) {
+  /* Inicio: indicadores bajo el hero en cuatro columnas verticales. */
+  .home-page .info-strip-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .home-page .info-cell,
+  .home-page .info-cell:nth-child(2) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+    padding: 1rem 0.5rem;
+    border-right: 1px solid #51463e;
+    text-align: center;
+  }
+
+  .home-page .info-cell:last-child {
+    border-right: 0;
+  }
+
+  .home-page .info-cell .info-icon {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+  }
+
+  .home-page .info-cell > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .home-page .info-cell strong {
+    font-size: 1.45rem;
+    line-height: 1.1;
+  }
+
+  .home-page .info-cell-certification strong {
+    font-size: 1rem;
+  }
+
+  .home-page .info-cell p {
+    margin-top: 0.35rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  /* Inicio: perfiles distribuidos en tres tarjetas verticales. */
+  .home-page .home-profiles .profile-services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .home-page .home-profiles .profile-services-grid > article {
+    min-width: 0;
+    min-height: 370px;
+    padding: 1.35rem 0.75rem 0.9rem;
+  }
+
+  .home-page .home-profiles .profile-service-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: center;
+  }
+
+  .home-page .home-profiles .profile-service-copy > img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .home-page .home-profiles .profile-service-copy h3 {
+    min-height: 2.4em;
+    margin-bottom: 0.55rem;
+  }
+
+  .home-page .home-profiles .profile-service-copy p {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .home-page .home-profiles .service-tags {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 0.4rem;
+  }
+
+  .home-page .home-profiles .service-tags-full {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .home-profiles .service-tags a {
+    min-width: 0;
+    min-height: 44px;
+    padding: 0.35rem 0.25rem;
+    font-size: 0.75rem;
+    overflow-wrap: anywhere;
+  }
+
+  /* Equipo: introducción de Dirección técnica en una sola línea. */
+  .studio-page .team-intro {
+    width: 100%;
+    max-width: none;
+  }
+
+  .studio-page .team-intro p {
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  /* Inspección: tres tarjetas verticales por cada bloque de audiencia. */
+  .inspection-page .inspection-reason-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .inspection-page .inspection-reason-list article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    min-height: 265px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+  }
+
+  .inspection-page .inspection-reason-list article > img {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 0.9rem;
+  }
+
+  .inspection-page .inspection-reason-list article > div {
+    padding: 0;
+    border-left: 0;
+  }
+
+  .inspection-page .inspection-reason-list h3 {
+    min-height: 2.4em;
+    margin-bottom: 0.6rem;
+  }
+
+  .inspection-page .inspection-reason-list p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Inspección: informe con texto contenido e imagen a la derecha. */
+  .inspection-page .inspection-report-grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(330px, 1.05fr);
+    min-height: 370px;
+    height: auto;
+  }
+
+  .inspection-page .inspection-report-grid > div:first-child {
+    min-width: 0;
+    padding: 1.35rem 1.4rem;
+  }
+
+  .inspection-page .inspection-report h2 {
+    white-space: normal;
+  }
+
+  .inspection-page .inspection-report ul {
+    gap: 0.4rem;
+    min-width: 0;
+  }
+
+  .inspection-page .inspection-report li {
+    max-width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .inspection-page .inspection-report-visual {
+    min-height: 370px;
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* Inspección: bloque principal del valor centrado en su eje. */
+  .inspection-page .inspection-price-grid > div:first-child {
+    text-align: center;
+  }
+
+  .inspection-page .inspection-price-value {
+    justify-content: center;
+  }
+
+  .inspection-page .inspection-price-grid > div:first-child .btn {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/* =========================================================
+   CEV: tablet de 801px a 1000px
+   ========================================================= */
+@media (min-width: 801px) and (max-width: 1000px) {
+  /* La introducción aprovecha todo el ancho y no usa separador inferior. */
+  .cev-page .cev-definition {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .cev-page .cev-definition p {
+    max-width: none;
+  }
+
+  /* Icono y título arriba; descripción a todo el ancho de cada tarjeta. */
+  .cev-page .cev-audience-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .cev-page .cev-audience-grid article {
+    grid-template-columns: 52px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: center;
+    height: 215px;
+    padding: 1rem;
+  }
+
+  .cev-page .cev-audience-grid article > img {
+    grid-column: 1;
+    grid-row: 1;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+  }
+
+  .cev-page .cev-audience-grid article > div {
+    display: contents;
+  }
+
+  .cev-page .cev-audience-grid h3 {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .cev-page .cev-audience-grid p {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-self: start;
+    width: 100%;
+    margin: 0.9rem 0 0;
+  }
+
+  /* Las dos tarjetas de antecedentes permanecen una junto a la otra. */
+  .cev-page .cev-start-needs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .cev-page .cev-start-needs > h2 {
+    grid-column: 1 / -1;
+  }
+
+  .cev-page .cev-start-needs article {
+    grid-template-columns: 58px minmax(0, 1fr);
+    min-width: 0;
+  }
+
+  .cev-page .cev-start-needs img {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Tres pasos arriba y dos pasos centrados en la segunda fila. */
+  .cev-page .cev-process-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.5rem 0;
+  }
+
+  .cev-page .cev-process-grid article {
+    grid-column: span 2;
+    min-width: 0;
+  }
+
+  .cev-page .cev-process-grid article:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .cev-page .cev-process-grid article:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
+/* =========================================================
+   Footer responsive
+   ========================================================= */
+@media (min-width: 700px) and (max-width: 900px) {
+  .site-footer .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer .footer-grid > .footer-brand {
+    grid-column: 1 / -1;
+    min-height: auto;
+    padding: 1.5rem 2rem 2rem;
+    border-right: 0;
+    border-bottom: 1px solid #454543;
+  }
+
+  .site-footer .footer-grid > .footer-column {
+    min-width: 0;
+    min-height: 0;
+    padding: 2rem;
+    border-bottom: 0;
+  }
+
+  .site-footer .footer-grid > .footer-column:nth-child(2) {
+    grid-column: 1;
+    border-right: 1px solid #454543;
+  }
+
+  .site-footer .footer-grid > .footer-contact {
+    grid-column: 2;
+    border-right: 0;
+  }
+
+  .site-footer .footer-brand,
+  .site-footer .footer-brand .brand {
+    align-items: center;
+    text-align: center;
+  }
+
+  .site-footer .footer-brand p {
+    white-space: nowrap;
+  }
+
+  .site-footer .footer-brand p br {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-footer .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-footer .footer-grid > .footer-brand,
+  .site-footer .footer-grid > .footer-column,
+  .site-footer .footer-grid > .footer-contact {
+    grid-column: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 2rem 1rem;
+    border-right: 0;
+    border-bottom: 1px solid #454543;
+  }
+
+  .site-footer .footer-grid > .footer-contact {
+    border-bottom: 0;
+  }
+
+  .site-footer .footer-brand,
+  .site-footer .footer-brand .brand,
+  .site-footer .footer-column {
+    align-items: center;
+    text-align: center;
+  }
+
+  .site-footer .footer-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-footer .footer-column ul {
+    width: max-content;
+    max-width: 100%;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .site-footer .footer-contact .footer-contact-item {
+    width: min(100%, 300px);
+    text-align: left;
+  }
+}
+
+/* =========================================================
+   Móvil: ajustes específicos bajo 500px
+   ========================================================= */
+@media (max-width: 500px) {
+  /* Inicio: indicadores bajo el hero en una matriz de 2 x 2. */
+  .home-page .info-strip-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-page .info-cell,
+  .home-page .info-cell:nth-child(2) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+    min-height: 175px;
+    padding: 1.1rem 0.65rem;
+    border-right: 0;
+    border-bottom: 1px solid #51463e;
+    text-align: center;
+  }
+
+  .home-page .info-cell:nth-child(odd) {
+    border-right: 1px solid #51463e;
+  }
+
+  .home-page .info-cell:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+
+  .home-page .info-cell .info-icon {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    margin: 0 auto;
+  }
+
+  .home-page .info-cell > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-page .info-cell strong {
+    font-size: 1.55rem;
+  }
+
+  .home-page .info-cell-certification strong {
+    font-size: 1rem;
+  }
+
+  .home-page .info-cell p {
+    margin-top: 0.4rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  /* Inicio: más aire entre la bajada del hero y sus botones. */
+  .home-page .hero-home .btn-row {
+    gap: 0.9rem;
+    margin-top: 1.35rem;
+  }
+
+  .home-page .hero-home .hero-content > p {
+    margin-bottom: 0;
+  }
+
+  /* Inicio: título centrado en Por qué TREVENI. */
+  .home-page .why-section .section-head h2 {
+    text-align: center;
+  }
+
+  /* Inicio: el enlace general queda después de las tres tarjetas. */
+  .home-page .featured-projects > .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-page .featured-projects-head {
+    display: contents;
+  }
+
+  .home-page .featured-projects-head > div {
+    order: 1;
+    margin-bottom: 1rem;
+  }
+
+  .home-page .projects-showcase {
+    order: 2;
+  }
+
+  .home-page .all-projects-link {
+    order: 3;
+    align-self: center;
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+
+  /* CTA compartido: botones centrados y con mayor separación. */
+  .unified-cta-actions {
+    gap: 1.15rem;
+  }
+
+  .unified-cta-actions .btn:first-child {
+    position: relative;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .unified-cta-actions .btn:first-child span[aria-hidden="true"] {
+    position: absolute;
+    right: 1rem;
+  }
+
+  /* Equipo: Áreas que integramos en dos columnas. */
+  .studio-page .areas-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .studio-page .areas-row article {
+    min-width: 0;
+    min-height: 285px;
+    padding: 1.15rem 0.65rem;
+  }
+
+  .studio-page .areas-row img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.8rem;
+  }
+
+  .studio-page .areas-row h3 {
+    min-height: 3.4rem;
+    margin-bottom: 0.65rem;
+    /*font-size: 1rem;*/
+    line-height: 1.25;
+  }
+
+  .studio-page .areas-row p {
+    /* font-size: 0.82rem; */
+    line-height: 1.45;
+  }
+
+  /* Equipo: menor separación en las tarjetas de organización. */
+  .studio-page .organization-grid h3 {
+    min-height: 0;
+    /* margin: 0.1rem 0 0.35rem;*/
+  }
+
+  .studio-page .organization-grid article:nth-child(2) h3 {
+    white-space: nowrap;
+  }
+
+  .studio-page .organization-grid article:nth-child(2) h3 br {
+    display: none;
+  }
+
+  /* Contacto: orientación en dos columnas con iconos superiores. */
+  .contact-page .orientation-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-page .orientation-row article,
+  .contact-page .orientation-row article:first-child,
+  .contact-page .orientation-row article:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    min-height: 205px;
+    padding: 1.15rem 0.65rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .contact-page .orientation-row article:nth-child(odd) {
+    border-right: 1px solid var(--line);
+  }
+
+  .contact-page .orientation-row article:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+
+  .contact-page .orientation-row img {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 0.75rem;
+  }
+
+  .contact-page .orientation-row article > div {
+    width: 100%;
+  }
+
+  .contact-page .orientation-row h3 {
+    min-height: 2.4em;
+    margin: 0 0 0.45rem;
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .contact-page .orientation-row p {
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  .contact-page .orientation-row p br {
+    display: none;
+  }
+
+  /* Heroes de servicios: más aire entre la bajada y los botones apilados. */
+  .inspection-page .hero-inspeccion .hero-content > p,
+  .valuation-page .hero-tasaciones .hero-content > p,
+  .cev-page .hero-cev .hero-content > p,
+  .architecture-page .hero-architecture .hero-content > p,
+  .regularization-page .hero-regularizacion .hero-content > p,
+  .construction-page .construction-inner > p {
+    margin-bottom: 0;
+  }
+
+  .inspection-page .hero-inspeccion .btn-row,
+  .valuation-page .hero-tasaciones .btn-row,
+  .cev-page .hero-cev .btn-row,
+  .architecture-page .hero-architecture .btn-row,
+  .regularization-page .hero-regularizacion .btn-row,
+  .construction-page .construction-inner .btn-row {
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  /* CEV: preguntas alineadas y sin quiebre entre ambas columnas móviles. */
+  .cev-page .cev-faq-grid {
+    gap: 0;
+  }
+
+  .cev-page .cev-faq .faq-button {
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .cev-page .cev-faq-grid > .faq + .faq .faq-item:first-child {
+    border-top: 0;
+  }
+
+  /* CEV: mayor separación visual entre las dos etapas. */
+  .cev-page .cev-stages-grid {
+    gap: 1.5rem;
+  }
+
+  /* Diseño Arquitectónico: imagen introductoria más compacta. */
+  .architecture-page .architecture-about-image {
+    min-height: 165px;
+    height: 165px;
+  }
+
+  /* Diseño Arquitectónico: audiencia compacta con iconos de mayor presencia. */
+  .architecture-page .architecture-audience-grid article,
+  .architecture-page .architecture-audience-grid article:nth-child(2) {
+    grid-template-columns: 62px minmax(0, 1fr);
+    gap: 0.7rem;
+    min-height: 0;
+    padding: 0.8rem 0.65rem;
+  }
+
+  .architecture-page .architecture-audience-grid img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .architecture-page .architecture-audience-grid h3 {
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .architecture-page .architecture-audience-grid p {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  /* Diseño Arquitectónico: enlace general después de Casa Horizonte. */
+  .architecture-page .featured-projects > .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .architecture-page .featured-projects-head {
+    display: contents;
+  }
+
+  .architecture-page .featured-projects-head > div {
+    order: 1;
+    margin-bottom: 1rem;
+  }
+
+  .architecture-page .projects-showcase {
+    order: 2;
+  }
+
+  .architecture-page .all-projects-link {
+    order: 3;
+    align-self: center;
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+
+  /* Inspección: alcance sin separador y con textos más compactos. */
+  .inspection-page .inspection-scope .section-head {
+    border-bottom: 0;
+  }
+
+  .inspection-page .inspection-scope-grid h3 {
+    min-height: 0;
+    margin-bottom: 0.15rem;
+  }
+
+  .inspection-page .inspection-scope-grid article {
+    align-items: center;
+  }
+
+  /* Inspección: menor distancia entre A quién va dirigido y sus tarjetas. */
+  .inspection-page .inspection-reasons-grid > div:last-child > h2 {
+    min-height: 0;
+    margin-bottom: 0.65rem;
+  }
+
+  /* Inspección: necesidades legibles en una matriz compacta de dos columnas. */
+  .inspection-page .inspection-needs {
+    gap: 1.15rem 0.75rem;
+  }
+
+  .inspection-page .inspection-needs img {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 0.45rem;
+  }
+
+  .inspection-page .inspection-needs span {
+    font-size: 0.82rem;
+    line-height: 1.3;
+  }
+
+  .inspection-page .inspection-needs span br {
+    display: none;
+  }
+
+  /* Inspección: valor referencial centrado en móvil. */
+  .inspection-page .inspection-price-grid > div:first-child {
+    text-align: center;
+  }
+
+  .inspection-page .inspection-price-value {
+    justify-content: center;
+  }
+
+  .inspection-page .inspection-price-grid > div:first-child .btn {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  /* Tasaciones: valor completo centrado en móvil. */
+  .valuation-page .valuation-price-grid > div:first-child {
+    text-align: center;
+  }
+
+  .valuation-page .valuation-price-value {
+    justify-content: center;
+  }
+
+  .valuation-page .valuation-price-grid > div:first-child .btn {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  /* Tasaciones: iconos y títulos centrados en A quién va dirigido. */
+  .valuation-page .valuation-audience article {
+    text-align: center;
+  }
+
+  .valuation-page .valuation-audience img {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 0.8rem;
+  }
+
+  .valuation-page .valuation-audience h3 {
+    text-align: center;
+  }
+
+  /* Comunidad y Regularizaciones: mayor separación entre acciones del hero. */
+  .construction-page .construction-inner .btn-row,
+  .regularization-page .hero-regularizacion .btn-row {
+    gap: 1.5rem;
+  }
+
+  /* Regularizaciones: beneficios compactos, con iconos más visibles y texto continuo. */
+  .regularization-page .reg-benefits {
+    gap: 0.7rem;
+  }
+
+  .regularization-page .reg-benefits > div {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .regularization-page .reg-benefits img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .regularization-page .reg-benefits span {
+    font-size: clamp(0.66rem, 2.9vw, 0.76rem);
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .regularization-page .reg-benefits span br {
+    display: none;
+  }
+
+  /* Regularizaciones: preguntas y respuestas alineadas al margen izquierdo. */
+  .regularization-page .reg-faq .faq-button {
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .regularization-page .reg-faq .faq-panel {
+    text-align: left;
+  }
+}
+
+@media (max-width: 800px) {
+  /* Mantiene la tipografía ampliada del listado aunque carguen después las reglas globales. */
+  .site-header .dropdown-menu a {
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  /* El estado cerrado conserva una hamburguesa de mayor presencia visual. */
+  .site-header .menu-toggle:not([aria-expanded="true"])::before {
+    font-size: 2.5rem;
+    transform: scaleX(1.08);
+  }
+
+  /* El panel nace en el borde superior y ocupa todo el ancho de la pantalla. */
+  .site-header .brand {
+    position: relative;
+    z-index: 73;
+  }
+
+  .site-header .nav-links {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100dvh;
+    padding-top: calc(78px + 0.35rem);
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0 0 18px 18px;
+  }
+
+  /* Estado activo visible en el nivel principal y en cada servicio. */
+  .site-header .nav-links a[aria-current="page"],
+  .site-header .dropdown.active > button {
+    color: var(--bronze);
+  }
+
+  /* Los servicios conservan la misma lectura separada del resto del menú. */
+  .site-header .dropdown-menu a:not(:last-child) {
+    border-bottom: 1px solid rgba(101, 65, 43, 0.16);
+  }
+
+  .site-header .dropdown-menu a:last-child {
+    border-bottom: 1px solid rgba(101, 65, 43, 0.16);
+  }
+}
+
+@media (max-width: 500px) {
+  /* Igualdad tipográfica entre beneficios y bajadas de la franja informativa. */
+  .regularization-page .reg-benefits span {
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 350px) {
+  /* Evita desbordamiento en los teléfonos más angostos. */
+  .regularization-page .reg-benefits span {
+    font-size: 0.84rem;
+    white-space: normal;
   }
 }
